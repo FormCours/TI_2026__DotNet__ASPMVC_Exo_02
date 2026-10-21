@@ -1,0 +1,68 @@
+@model IEnumerable<Exo_ASPMVC_02.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <p class="bg-danger text-white fw-bold p-2">@TempData["ErrorMessage"]</p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBlamed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Remark)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.IsBlamed)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
